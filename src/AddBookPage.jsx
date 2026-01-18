@@ -1,9 +1,19 @@
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { addBook } from "../redux/bookManagerSlice";
+import { useSelector } from "react-redux";
 
 function AddBookPage() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [selectedBook, setSelectedBook] = useState({ title: "", genre: "" });
+  const dispatch = useDispatch();
+
+  const books = useSelector((state) => state.bookManager.totalBooks);
+
+  useEffect(() => {
+    console.log('books updated', books)
+  }, [books])
 
   useEffect(() => {
     // Only search if the user has typed at least 3 characters
@@ -26,7 +36,11 @@ function AddBookPage() {
   }, [query]);
 
   const handleSelect = (book) => {
+
     console.log(book)
+    
+    dispatch(addBook(book))
+
     setSelectedBook({
       title: book.title,
       genre: book.subject ? book.subject[0] : "Unknown" // Take first genre/subject
