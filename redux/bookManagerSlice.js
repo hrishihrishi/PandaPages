@@ -23,6 +23,7 @@ const bookManagerSlice = createSlice({
         // },
 
         editGenreById: (state, action) => {
+            state.totalBooks.find(book => book.key === action.payload.key).genre = action.payload.genre
         },
 
         toggleFavStatusByBookId: (state, action) => {

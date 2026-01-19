@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { addBook } from "../redux/bookManagerSlice";
+import { addBook, editGenreById } from "../redux/bookManagerSlice";
 import { useSelector } from "react-redux";
 
 function AddBookPage() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [selectedBook, setSelectedBook] = useState({ title: "", genre: "" });
+  const [genre, setGenre] = useState("")
   const dispatch = useDispatch();
-
   const books = useSelector((state) => state.bookManager.totalBooks);
 
   useEffect(() => {
@@ -22,6 +22,7 @@ function AddBookPage() {
       return;
     }
 
+    // fetch top search results via API
     const timer = setTimeout(async () => {
       try {
         const response = await fetch(`https://openlibrary.org/search.json?q=${query}&limit=5`);
@@ -35,26 +36,33 @@ function AddBookPage() {
     return () => clearTimeout(timer); // Cleanup timer if user types again
   }, [query]);
 
+  // sets book to selectedBook. & displays books details!
   const handleSelect = (book) => {
-
-    console.log(book)
-    
-    dispatch(addBook(book))
-
     setSelectedBook({
+      key: book.key,
       title: book.title,
+      author_name: book.author_name,
+      first_publish_year: book.first_publish_year,
       genre: book.subject ? book.subject[0] : "Unknown" // Take first genre/subject
     });
     setResults([]); // Clear list
     setQuery(book.title); // Fill input
   };
 
+  // dispatch action to add book to the redux slice
+  const handleAddBook = () => {
+    // append/replace genre to selectedBook
+    const updatedBook = {...selectedBook, genre: genre}
+    setSelectedBook(updatedBook)
+    dispatch(addBook(updatedBook))
+  }
+
   return (
     <div style={{ padding: '20px' }}>
       <label>Search Book Name:</label>
-      <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="type some characters" className="border border-gray-700 rounded m-4 p-2" />
+      <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="type some characters" className="input" />
 
-      {/* The Suggestion Dropdown */}
+      {/* The Dropdown that onClick triggers handleSelect*/}
       {results.length > 0 && (
         <ul style={{ border: '1px solid #ccc', listStyle: 'none', padding: 10 }}>
           {results.map((book) => (
@@ -72,7 +80,15 @@ function AddBookPage() {
       <hr />
       <h3 className="m-2">Selected Book Details</h3>
       <p>Title: {selectedBook.title}</p>
-      <p>Genre: {selectedBook.genre}</p>
+      <p>Author: {selectedBook.author_name && selectedBook.author_name.join(', ')}</p>
+      <p>Genre: {  
+        // setGenre with Input tag
+        (<input type="text" defaultValue={selectedBook.genre} onChange={(e) => setGenre(e.target.value)} className="input" />) 
+        } 
+      </p>
+      {/* <button onClick={} className="blue-btn">Edit Genre</button> */}
+      <button onClick={() => handleAddBook()} className="blue-btn bg-green-500">Add Book</button>
+
     </div>
   );
 }
