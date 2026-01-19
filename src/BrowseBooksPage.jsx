@@ -1,6 +1,6 @@
 import React from 'react'
 
-function BrowserBooksPage() {
+function BrowseBooksPage() {
     const handleSearch = (e) => {
         console.log(e.target.value)
     }
@@ -14,4 +14,4 @@ function BrowserBooksPage() {
     )
 }
 
-export default BrowserBooksPage
+export default BrowseBooksPage
