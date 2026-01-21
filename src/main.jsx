@@ -10,6 +10,8 @@ import { persistor } from '../redux/booksReduxStore.js';
 import { createRoot } from 'react-dom/client';
 import { StrictMode } from 'react';
 import BookDetailsPage from './BookDetailsPage.jsx';
+import HomePage from './HomePage.jsx';
+
 
 // 1. Define routes as an array of objects
 const router = createBrowserRouter([
@@ -17,12 +19,9 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
-      { path: "BrowseBooksPage", element: <BrowseBooksPage />,
-        // children: [
-          
-        // ]
-       },
-      {path: "BrowseBooksPage*", element: <BookDetailsPage />},
+      { path: "HomePage", element: <HomePage />},
+      { path: "BrowseBooksPage", element: <BrowseBooksPage />},
+      { path: "BrowseBooksPage*", element: <BookDetailsPage />},
       { path: "AddBookPage", element: <AddBookPage /> },
     ]
   }

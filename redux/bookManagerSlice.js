@@ -12,7 +12,8 @@ const bookManagerSlice = createSlice({
         },
 
         // payload will be the book id
-        removeBookById: (state, action) => {
+        deleteBookById: (state, action) => {
+            state.totalBooks = state.totalBooks.filter(book => book.key !== action.payload)
         },
 
         editGenreById: (state, action) => {
@@ -24,5 +25,5 @@ const bookManagerSlice = createSlice({
     }
 })
 
-export const { addBook, removeBookById, getBookById, getAllBooks, editGenreById, toggleFavStatusByBookId } = bookManagerSlice.actions
+export const { addBook, deleteBookById, getBookById, getAllBooks, editGenreById, toggleFavStatusByBookId } = bookManagerSlice.actions
 export default bookManagerSlice.reducer
