@@ -15,13 +15,6 @@ const bookManagerSlice = createSlice({
         removeBookById: (state, action) => {
         },
 
-        getBookById: (state, action) => {
-        },
-
-        // getAllBooks: (state) => {
-        //     return state.totalBooks
-        // },
-
         editGenreById: (state, action) => {
             state.totalBooks.find(book => book.key === action.payload.key).genre = action.payload.genre
         },

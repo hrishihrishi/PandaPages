@@ -6,3 +6,6 @@
 .input {
     @apply border-3 border-gray-700 rounded m-4 p-2
 }
+.bd {
+    @apply text-3xl 
+}
