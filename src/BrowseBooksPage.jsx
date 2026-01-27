@@ -1,17 +1,21 @@
 import React, { useState } from 'react'
 import DisplayBooks from './components/DisplayBooks'
 import { useSelector } from 'react-redux'
+import { useLocation } from 'react-router-dom'
 
 function BrowseBooksPage() {
-    
+
     const [genre, setGenre] = useState('')
     const [starts_with, setStartsWith] = useState('')
     const books = useSelector((state) => state.bookManager.totalBooks)
     let filteredBooks = books;
+    const location = useLocation();
 
-    if (genre!=='') filteredBooks = books.filter(book => book.genre === genre);
-    if (starts_with!=='') filteredBooks = books.filter(book => book.title?.toLowerCase().includes(starts_with.toLowerCase()));
+    const first_book = location.state?.first_book || '';
 
+    // Search funtionality.
+    if (genre !== '') filteredBooks = books.filter(book => book.genre === genre);
+    if (starts_with !== '') filteredBooks = books.filter(book => book.title?.toLowerCase().includes(starts_with.toLowerCase()));
 
     const handleSearch = () => {
         console.log(starts_with)
@@ -35,7 +39,13 @@ function BrowseBooksPage() {
                 <option value="Adventure">Adventure</option>
             </select>
 
-            <DisplayBooks genre={genre} starts_with={starts_with} books={filteredBooks}/>
+            
+            {first_book !=='' && <DisplayBooks books={first_book} />}
+            <hr className='p-5 mt-4'/>
+            {
+            filteredBooks.length === 0 ? <h1>No books available with these keywords !</h1> : <DisplayBooks genre={genre} starts_with={starts_with} books={filteredBooks} />
+            }
+
         </div>
     )
 }

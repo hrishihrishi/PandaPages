@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addBook, editGenreById } from "../redux/bookManagerSlice";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function AddBookPage() {
   const [query, setQuery] = useState("");
@@ -9,6 +10,7 @@ function AddBookPage() {
   const [selectedBook, setSelectedBook] = useState({ title: "", genre: "" });
   const [genre, setGenre] = useState("")
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const books = useSelector((state) => state.bookManager.totalBooks);
 
   useEffect(() => {
@@ -59,6 +61,7 @@ function AddBookPage() {
     setGenre('')
     setResults([])
     setSelectedBook({ title: "", genre: "" })
+    navigate('/BrowseBooksPage', {state: {first_book: [updatedBook]}})
   }
 
   return (
@@ -85,24 +88,24 @@ function AddBookPage() {
       <h3 className="m-2">Selected Book Details</h3>
       <p>Title: {selectedBook.title}</p>
       <p>Author: {selectedBook.author_name && selectedBook.author_name.join(', ')}</p>
-      <p>Genre: 
-      <select defaultValue={selectedBook.genre} onChange={(e) => setGenre(e.target.value)} className="rounded-xl p-1.5 w-1/6 bg-amber-100">
-        <option value="">Select Genre</option>
-        <option value="Fiction">Fiction</option>
-        <option value="Personality">Personality</option>
-        <option value="Finance">Finance</option>
-        <option value="Science">Science</option>
-        <option value="Mysticism">Mysticism</option>
-        <option value="Comedy">Comedy</option>
-        <option value="Love">Love</option>
-        <option value="Adventure">Adventure</option>
-      </select>
+      <p>Genre:
+        <select defaultValue={selectedBook.genre} onChange={(e) => setGenre(e.target.value)} className="rounded-xl p-1.5 w-1/6 bg-amber-100">
+          <option value="">Select Genre</option>
+          <option value="Fiction">Fiction</option>
+          <option value="Personality">Personality</option>
+          <option value="Finance">Finance</option>
+          <option value="Science">Science</option>
+          <option value="Mysticism">Mysticism</option>
+          <option value="Comedy">Comedy</option>
+          <option value="Love">Love</option>
+          <option value="Adventure">Adventure</option>
+        </select>
       </p>
 
       {/*  YET TO DO ... 
       ❖ After submission, redirect the user to the Browse Books page with the newly added book
       displayed at the beginning. (10 marks) */}
-      
+
       <button onClick={() => handleAddBook()} className="blue-btn bg-green-500">Add Book</button>
 
     </div>

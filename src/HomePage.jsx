@@ -23,9 +23,14 @@ function HomePage() {
     const handleClick = (selectedGenre) => {
         setGenre(selectedGenre)
     }
+    const handleReset = () => {
+        setGenre('')
+        setStartsWith('')
+    }
     return (
         <div>
             <h1>HomePage</h1>
+            <button onClick={handleReset} className='blue-btn'>Reset</button>
             {
                 genres.map( (genre) =>
                     <div key={genre} onClick={() => handleClick(genre)} className='p-5 bg-red-100 rounded-xl m-2 inline-block text-amber-700 italic text-3xl font-semibold cursor-pointer shadow-lg hover:bg-amber-200 transition-all duration-300 ease-in-out'>
