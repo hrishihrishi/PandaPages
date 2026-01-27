@@ -7,6 +7,10 @@ function BrowseBooksPage() {
     const [genre, setGenre] = useState('')
     const [starts_with, setStartsWith] = useState('')
     const books = useSelector((state) => state.bookManager.totalBooks)
+    let filteredBooks = books;
+
+    if (genre!=='') filteredBooks = books.filter(book => book.genre === genre);
+    if (starts_with!=='') filteredBooks = books.filter(book => book.title?.toLowerCase().includes(starts_with.toLowerCase()));
 
 
     const handleSearch = () => {
@@ -31,7 +35,7 @@ function BrowseBooksPage() {
                 <option value="Adventure">Adventure</option>
             </select>
 
-            <DisplayBooks genre={genre} starts_with={starts_with} books={books}/>
+            <DisplayBooks genre={genre} starts_with={starts_with} books={filteredBooks}/>
         </div>
     )
 }

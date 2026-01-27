@@ -9,9 +9,7 @@ function DisplayBooks({ genre, starts_with, books }) {
             {
                 books.map( book => {
                     return (
-                        <div key={book.key}
-                        className="max-w-sm rounded-2xl m-4 overflow-hidden shadow-lg border p-4"
-                        >
+                        <div key={book.key} className="max-w-sm rounded-2xl m-4 overflow-hidden shadow-lg border p-4" >
                             <h2>Title: {book.title}</h2>
                             {/* <p>Author: {book.author_name.join(',')}</p> */}
                             <p>Genre: {book.genre ? book.genre : 'N/A'}</p>
