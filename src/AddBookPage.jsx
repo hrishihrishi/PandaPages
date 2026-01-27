@@ -27,7 +27,7 @@ function AddBookPage() {
       try {
         const response = await fetch(`https://openlibrary.org/search.json?q=${query}&limit=5`);
         const data = await response.json();
-        setResults(data.docs); 
+        setResults(data.docs);
       } catch (error) {
         console.error("Error fetching books:", error);
       }
@@ -52,9 +52,13 @@ function AddBookPage() {
   // dispatch action to add book to the redux slice
   const handleAddBook = () => {
     // append/replace genre to selectedBook
-    const updatedBook = {...selectedBook, genre: genre}
+    const updatedBook = { ...selectedBook, genre: genre }
     setSelectedBook(updatedBook)
     dispatch(addBook(updatedBook))
+    setQuery('')
+    setGenre('')
+    setResults([])
+    setSelectedBook({ title: "", genre: "" })
   }
 
   return (
@@ -66,8 +70,8 @@ function AddBookPage() {
       {results.length > 0 && (
         <ul style={{ border: '1px solid #ccc', listStyle: 'none', padding: 10 }}>
           {results.map((book) => (
-            <li 
-              key={book.key} 
+            <li
+              key={book.key}
               onClick={() => handleSelect(book)}
               style={{ cursor: 'pointer', padding: '5px' }}
             >
@@ -81,12 +85,24 @@ function AddBookPage() {
       <h3 className="m-2">Selected Book Details</h3>
       <p>Title: {selectedBook.title}</p>
       <p>Author: {selectedBook.author_name && selectedBook.author_name.join(', ')}</p>
-      <p>Genre: {  
-        // setGenre with Input tag
-        (<input type="text" defaultValue={selectedBook.genre} onChange={(e) => setGenre(e.target.value)} className="input" />) 
-        } 
+      <p>Genre: 
+      <select defaultValue={selectedBook.genre} onChange={(e) => setGenre(e.target.value)} className="rounded-xl p-1.5 w-1/6 bg-amber-100">
+        <option value="">Select Genre</option>
+        <option value="Fiction">Fiction</option>
+        <option value="Personality">Personality</option>
+        <option value="Finance">Finance</option>
+        <option value="Science">Science</option>
+        <option value="Mysticism">Mysticism</option>
+        <option value="Comedy">Comedy</option>
+        <option value="Love">Love</option>
+        <option value="Adventure">Adventure</option>
+      </select>
       </p>
-      {/* <button onClick={} className="blue-btn">Edit Genre</button> */}
+
+      {/*  YET TO DO ... 
+      ❖ After submission, redirect the user to the Browse Books page with the newly added book
+      displayed at the beginning. (10 marks) */}
+      
       <button onClick={() => handleAddBook()} className="blue-btn bg-green-500">Add Book</button>
 
     </div>

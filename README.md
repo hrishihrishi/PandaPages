@@ -1,11 +1,7 @@
-# Stuffs added so far.
-
-1. redux
-2. openLibraryAPI with searchable search bar
-3. edit genre in add Book page
-
-
 # To-DO.
-1. 
-2. filter in Browser books
-3. View more button for each book in Browser books
+
+- search functionality.
+
+- Use dynamic routing to filter books by category (e.g., /books/:category) and Display.
+
+- Genre selector (dropdown in input tag AddBookPage) + (Genre cards in DashBoard) + (Genre filter dropdown in BrowseBooksPage)

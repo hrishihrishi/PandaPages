@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 function BookDetailsPage() {
 
@@ -23,6 +23,8 @@ function BookDetailsPage() {
                 <p >Author: {book.author_name.join(',')}</p>
                 <p >Genre: {book.genre ? book.genre : 'N/A'}</p>
                 <p >Key: {book.key}</p>
+                <p >Ratings: 4/5</p>
+                <Link to={'/BrowseBooksPage'}><button className='blue-btn'>Back to Browse</button></Link>
             </div>
         </div>
     )
