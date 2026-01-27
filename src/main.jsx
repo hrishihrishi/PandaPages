@@ -11,6 +11,7 @@ import { createRoot } from 'react-dom/client';
 import { StrictMode } from 'react';
 import BookDetailsPage from './BookDetailsPage.jsx';
 import HomePage from './HomePage.jsx';
+import BrowseByGenrePage from './BrowseByGenrePage.jsx';
 
 
 // 1. Define routes as an array of objects
@@ -19,10 +20,11 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
-      { path: "HomePage", element: <HomePage />},
-      { path: "BrowseBooksPage", element: <BrowseBooksPage />},
-      { path: "BrowseBooksPage*", element: <BookDetailsPage />},
+      { path: "HomePage", element: <HomePage /> },
+      { path: "BrowseBooksPage", element: <BrowseBooksPage /> },
+      { path: "BrowseBooksPage*", element: <BookDetailsPage /> },
       { path: "AddBookPage", element: <AddBookPage /> },
+      { path: "BrowseByGenrePage", element: <BrowseByGenrePage /> },
     ]
   }
 ]);

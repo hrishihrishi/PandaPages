@@ -2,8 +2,11 @@ import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { deleteBookById } from "../../redux/bookManagerSlice" 
 
-function DisplayBooks({ genre, starts_with, books }) {
+function DisplayBooks({ genre='', books }) {
     const dispatch = useDispatch();
+
+    if (genre !== '') books = books.filter(book => book.genre === genre);
+
     return (
         <div>
             {

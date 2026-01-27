@@ -1,7 +1,5 @@
 # To-DO.
 
-- Use dynamic routing to filter books by category (e.g., /books/:category) and Display.
-
 5. 404 Page: (5 marks)
 ❖ Add a "Page Not Found" route to handle any undefined routes. The 404 page should
 display the invalid route URL on the screen and should not include the Header

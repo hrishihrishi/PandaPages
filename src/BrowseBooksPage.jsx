@@ -43,7 +43,8 @@ function BrowseBooksPage() {
             {first_book !=='' && <DisplayBooks books={first_book} />}
             <hr className='p-5 mt-4'/>
             {
-            filteredBooks.length === 0 ? <h1>No books available with these keywords !</h1> : <DisplayBooks genre={genre} starts_with={starts_with} books={filteredBooks} />
+            filteredBooks.length === 0 ? <h1>No books available with these keywords !</h1> : 
+            <DisplayBooks genre={genre} books={filteredBooks} />
             }
 
         </div>
