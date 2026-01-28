@@ -1,6 +1,7 @@
 # Panda Pages - Online Library System
 
 Welcome to **Panda Pages**, a modern and responsive online library management system built with React, Redux, and Tailwind CSS.
+Note: This project was given to me assisgnment from internshala, therefore not all the features are implemented to adhere to the assignment criteria.
 
 ### Github repository link: https://github.com/hrishihrishi/PandaPages
 
