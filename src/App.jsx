@@ -4,7 +4,9 @@ function App() {
 
   return (
     <>
+    {/* Navigation bar */}
       <NavBar />
+      {/* Outlet to render child components */}
       <Outlet />
     </>
   )

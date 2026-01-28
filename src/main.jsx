@@ -34,9 +34,11 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    {/* Provider to get context */}
     <Provider store={bookStore}>
+      {/* PersistGate to persist state */}
       <PersistGate loading={null} persistor={persistor}>
-        {/* 2. Use RouterProvider instead of BrowserRouter + Routes */}
+        {/* RouterProvider to provide router */}
         <RouterProvider router={router} />
       </PersistGate>
     </Provider>

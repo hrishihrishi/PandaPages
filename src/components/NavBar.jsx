@@ -4,9 +4,11 @@ import { Link, NavLink } from 'react-router-dom'
 
 function NavBar() {
     return (
+        // main container
         <nav className='p-5'>
-            <div className='flex justify-between text-white py-3 px-10 text-2xl font-semibold italic bg-blue-400 rounded-2xl'>
 
+            {/* Navigation bar inner container for rounded corners */}
+            <div className='flex justify-between text-white py-3 px-10 text-2xl font-semibold italic bg-blue-400 rounded-2xl'>
                 <h1 className='text-3xl font-extrabold'>Panda Pages</h1>
                 <ul className='flex space-x-5 gap-3.5'>
                     <li className='h'>

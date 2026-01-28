@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 function AddBookPage() {
+  // local states
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [selectedBook, setSelectedBook] = useState({ title: "", genre: "" });
@@ -13,9 +14,9 @@ function AddBookPage() {
   const navigate = useNavigate();
   const books = useSelector((state) => state.bookManager.totalBooks);
 
-  useEffect(() => {
-    console.log('books updated', books)
-  }, [books])
+  // useEffect(() => {
+  //   console.log('books updated', books)
+  // }, [books])
 
   useEffect(() => {
     // Only search if the user has typed at least 3 characters
@@ -57,10 +58,14 @@ function AddBookPage() {
     const updatedBook = { ...selectedBook, genre: genre }
     setSelectedBook(updatedBook)
     dispatch(addBook(updatedBook))
+
+    // reset form
     setQuery('')
     setGenre('')
     setResults([])
     setSelectedBook({ title: "", genre: "" })
+
+    // navigate to BrowseBooksPage & pass the updated book as first book
     navigate('/BrowseBooksPage', {state: {first_book: [updatedBook]}})
   }
 
@@ -87,6 +92,7 @@ function AddBookPage() {
       )}
 
       <hr />
+      {/* Selected Book Details */}
       <p className="sp mt-5 underline">Selected Book Details:</p>
       <p className="sp" >Title: {selectedBook.title}</p>
       <p className="sp">Author: {selectedBook.author_name && selectedBook.author_name.join(', ')}</p>
@@ -104,11 +110,7 @@ function AddBookPage() {
         </select>
       </p>
 
-      {/*  YET TO DO ... 
-      ❖ After submission, redirect the user to the Browse Books page with the newly added book
-      displayed at the beginning. (10 marks) */}
-
-      <button onClick={() => handleAddBook()} className="blue-btn bg-green-500">Add Book</button>
+      <button onClick={() => handleAddBook()} className="blue-btn">Add Book</button>
 
     </div>
   );

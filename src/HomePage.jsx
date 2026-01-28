@@ -4,6 +4,7 @@ import DisplayBooks from './components/DisplayBooks'
 import { useNavigate } from 'react-router-dom'
 
 function HomePage() {
+    // genres
     const genres = ['Fiction',
         'Personality',
         'Finance',
@@ -11,8 +12,10 @@ function HomePage() {
         'Mysticism',
         'Comedy',
         'Love',
-        'Adventure']
+        'Adventure'
+    ]
 
+    // colors for genres (random)
     const colors = [
         'bg-red-100',
         'bg-blue-100',
@@ -28,6 +31,7 @@ function HomePage() {
     const popular_books = books.slice(-5);
     const navigate = useNavigate();
 
+    // function to navigate to BrowseByGenrePage
     const handleClick = (selectedGenre) => {
         navigate('/BrowseByGenrePage', { state: { selectedGenre: selectedGenre } })
     }
@@ -35,8 +39,12 @@ function HomePage() {
 
     return (
         <div className='h-screen'>
+
+            {/* Welcome message */}
             <h1 className='font-extrabold text-5xl italic text-blue-500 p-5 justify-center flex'>Welocome to Panda Pages !</h1>
             <p className='text-xl font-semibold italic px-10 mb-6 justify-center flex'>Choose a category / genre of the books you want to read...!</p>
+
+            {/* Genre cards (rendered via map function) */}
             <div className='p-5 px-10'>
                 {
                     genres.map((genre, index) =>
@@ -46,6 +54,8 @@ function HomePage() {
                         </div>)
                 }
             </div>
+
+            {/* Popular Books display */}
             <div className='bg-pink-50 z-0'>
                 <h1 className='text-4xl font-bold italic text-pink-400 justify-center items-center flex p-10'>Popular Books !</h1>
                 <DisplayBooks books={popular_books} />

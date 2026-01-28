@@ -4,17 +4,21 @@ import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';
 import persistStore from "redux-persist/es/persistStore";
 
+// configuration to store data in browser local storage
 const persistConfig = {
     key: 'ppbooks',
     storage,
 }
 
+// combine reducers to pass to store
 const rootReducer = combineReducers({
     bookManager: bookManagerSlice,
 })
 
+// create persisted reducer
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
+// create store
 const bookStore = configureStore({
     reducer: persistedReducer,
 
