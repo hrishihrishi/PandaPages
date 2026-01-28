@@ -12,6 +12,7 @@ import { StrictMode } from 'react';
 import BookDetailsPage from './BookDetailsPage.jsx';
 import HomePage from './HomePage.jsx';
 import BrowseByGenrePage from './BrowseByGenrePage.jsx';
+import ErrorFallbackPage from './ErrorFallbackPage.jsx';
 
 
 // 1. Define routes as an array of objects
@@ -19,7 +20,9 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <ErrorFallbackPage />,
     children: [
+      { index: true, element: <HomePage /> },
       { path: "HomePage", element: <HomePage /> },
       { path: "BrowseBooksPage", element: <BrowseBooksPage /> },
       { path: "BrowseBooksPage*", element: <BookDetailsPage /> },
