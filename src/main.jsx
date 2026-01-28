@@ -12,7 +12,7 @@ import { StrictMode } from 'react';
 import BookDetailsPage from './BookDetailsPage.jsx';
 import HomePage from './HomePage.jsx';
 import BrowseByGenrePage from './BrowseByGenrePage.jsx';
-import ErrorFallbackPage from './ErrorFallbackPage.jsx';
+import PageNotFound from './PageNotFound.jsx';
 
 
 // 1. Define routes as an array of objects
@@ -20,14 +20,14 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <ErrorFallbackPage />,
+    errorElement: <PageNotFound />,
     children: [
-      { index: true, element: <HomePage /> },
-      { path: "HomePage", element: <HomePage /> },
-      { path: "BrowseBooksPage", element: <BrowseBooksPage /> },
-      { path: "BrowseBooksPage*", element: <BookDetailsPage /> },
-      { path: "AddBookPage", element: <AddBookPage /> },
-      { path: "BrowseByGenrePage", element: <BrowseByGenrePage /> },
+      { index: true, element: <HomePage />, errorElement: <PageNotFound /> },
+      { path: "HomePage", element: <HomePage />, errorElement: <PageNotFound /> },
+      { path: "BrowseBooksPage", element: <BrowseBooksPage />, errorElement: <PageNotFound /> },
+      { path: "BrowseBooksPage*", element: <BookDetailsPage />, errorElement: <PageNotFound /> },
+      { path: "AddBookPage", element: <AddBookPage />, errorElement: <PageNotFound /> },
+      { path: "BrowseByGenrePage", element: <BrowseByGenrePage />, errorElement: <PageNotFound /> },
     ]
   }
 ]);

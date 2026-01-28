@@ -1,11 +1,20 @@
 @import "tailwindcss";
 
 .blue-btn {
-    @apply bg-blue-500 text-white p-2 rounded-md m-3 hover:cursor-pointer
+    @apply bg-blue-500 text-white p-2 rounded-lg m-3 hover:cursor-pointer hover:font-bold duration-150
 }
 .input {
     @apply border-2 border-gray-400 rounded-xl w-1/2 m-4 p-2
 }
 .bd {
     @apply text-3xl 
+}
+.sp{
+    @apply p-2
+}
+.h{
+    @apply duration-200  rounded-xl
+}
+.a{
+    @apply text-3xl rounded-xl p-1 duration-100 text-amber-100 font-extrabold
 }

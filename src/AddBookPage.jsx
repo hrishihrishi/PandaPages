@@ -65,9 +65,11 @@ function AddBookPage() {
   }
 
   return (
-    <div style={{ padding: '20px' }}>
+    <div className="absolute top-1/6 left-1/4">
       <label>Search Book Name:</label>
-      <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="type some characters" className="input" />
+      <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="type atleast 3 characters for suggetions . . ." className="input" />
+
+      <p className="text-gray-400 italic mb-2">Note: This search bar fetches data directly from API so wait 5 seconds for suggestions,  also check your intenrnet connection</p>
 
       {/* The Dropdown that onClick triggers handleSelect*/}
       {results.length > 0 && (
@@ -85,10 +87,10 @@ function AddBookPage() {
       )}
 
       <hr />
-      <h3 className="m-2">Selected Book Details</h3>
-      <p>Title: {selectedBook.title}</p>
-      <p>Author: {selectedBook.author_name && selectedBook.author_name.join(', ')}</p>
-      <p>Genre:
+      <p className="sp mt-5 underline">Selected Book Details:</p>
+      <p className="sp" >Title: {selectedBook.title}</p>
+      <p className="sp">Author: {selectedBook.author_name && selectedBook.author_name.join(', ')}</p>
+      <p className="sp">Genre:
         <select defaultValue={selectedBook.genre} onChange={(e) => setGenre(e.target.value)} className="rounded-xl p-1.5 w-1/6 bg-amber-100">
           <option value="">Select Genre</option>
           <option value="Fiction">Fiction</option>

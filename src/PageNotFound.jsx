@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useRouteError } from 'react-router-dom'
 
-function ErrorFallbackPage() {
+function PageNotFound() {
     const err = useRouteError();
     console.log(err)
 
@@ -23,4 +23,4 @@ function ErrorFallbackPage() {
     )
 }
 
-export default ErrorFallbackPage;
+export default PageNotFound;

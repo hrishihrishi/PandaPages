@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import DisplayBooks from './components/DisplayBooks'
 import { useSelector } from 'react-redux'
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 function BrowseBooksPage() {
 
@@ -39,12 +39,15 @@ function BrowseBooksPage() {
                 <option value="Adventure">Adventure</option>
             </select>
 
-            
-            {first_book !=='' && <DisplayBooks books={first_book} />}
-            <hr className='p-5 mt-4'/>
+
+            {first_book !== '' && <DisplayBooks books={first_book} />}
             {
-            filteredBooks.length === 0 ? <h1>No books available with these keywords !</h1> : 
-            <DisplayBooks genre={genre} books={filteredBooks} />
+                filteredBooks.length === 0 ?
+                    <div className='flex flex-col rounded-2xl p-5 justify-center items-center'>
+                        <h1 className='text-2xl italic bg-pink-200 p-2 mb-7'> Oops !! You don't have books available with these keywords !</h1>
+                        <Link to='/AddBookPage'><button className='blue-btn'>Add new book</button></Link>
+                    </div> :
+                    <DisplayBooks genre={genre} books={filteredBooks} />
             }
 
         </div>
